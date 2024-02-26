@@ -1,17 +1,17 @@
 <?php
 
-session_start();
+session_start();    // Iniciando uma sessão existente
 
-if (!isset($_SESSION['tasks'])) {
+if (!isset($_SESSION['tasks'])) {    // Verifica se a variável de sessão 'tasks' não está definida. Se não estiver definida, inicializa-a como um array vazio
     $_SESSION['tasks'] = array();
 }
 
-if (isset($_GET['task_name'])) {
+if (isset($_GET['task_name'])) {    // Verifica se foi enviado um parâmetro chamado 'task_name' via método GET. Se existir, adiciona o valor desse parâmetro ao final do array 'tasks' na sessão e então remove o parâmetro 'task_name' do array $_GET
     array_push($_SESSION['tasks'], $_GET['task_name']);
     unset($_GET['task_name']);
 }
 
-if (isset($_GET['clear'])) {
+if (isset($_GET['clear'])) {    // Verifica se foi enviado um parâmetro chamado 'clear' via método GET. Se existir, remove completamente a variável 'tasks' da sessão
     unset($_SESSION['tasks']);
 }
 
@@ -44,14 +44,14 @@ if (isset($_GET['clear'])) {
         </div>
         <div class="list-tasks">
             <?php
-                if (isset($_SESSION['tasks'])) {
-                    echo "<ul>";
+                if (isset($_SESSION['tasks'])) {    // Verifica se a variável de sessão 'tasks' está definida
+                    echo "<ul>";    // Se estiver definida, começa a impressão de uma lista não ordenada HTML
 
-                    foreach($_SESSION['tasks'] as $key => $task) {
-                        echo "<li>$task</li>";
+                    foreach($_SESSION['tasks'] as $key => $task) {    // Itera sobre cada elemento da array 'tasks'
+                        echo "<li>$task</li>";    // Imprime um item de lista HTML para cada tarefa
                     }
 
-                    echo "</ul>";
+                    echo "</ul>";    // Finaliza a lista não ordenada HTML
                 }
             ?>
 
